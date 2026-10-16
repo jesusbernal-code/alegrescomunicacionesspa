@@ -1,0 +1,605 @@
+/* Reseteo General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: #030712;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* --- FONDO VECTORIAL DE CIRCUITO COMPLETO DE PANTALLA ENTERA --- */
+.tech-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(circle at 50% 50%, #08162d 0%, #02050c 100%);
+}
+
+.circuit-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle at 50% 50%, rgba(0, 242, 254, 0.08) 0%, transparent 60%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='circuit' width='200' height='200' patternUnits='userSpaceOnUse'%3E%3Cpath d='M20 20 H180 V180 H20 Z' fill='none' stroke='rgba(0,242,254,0.06)' stroke-width='1'/%3E%3Cpath d='M0 100 H200 M100 0 V200' stroke='rgba(0,255,136,0.04)' stroke-width='1'/%3E%3Ccircle cx='20' cy='20' r='3' fill='rgba(0,242,254,0.3)'/%3E%3Ccircle cx='180' cy='180' r='3' fill='rgba(0,255,136,0.3)'/%3E%3Cpath d='M20 100 L60 60 H140 L180 100' fill='none' stroke='rgba(0,242,254,0.1)' stroke-width='2'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23circuit)'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-position: center;
+}
+
+/* --- HEADER RESPONSIVO --- */
+.header {
+    background: rgba(8, 14, 26, 0.92);
+    border-bottom: 2px solid rgba(0, 242, 254, 0.3);
+    padding: 18px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;    
+    text-align: center;
+    gap: 12px;
+}
+
+.logo-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.6), 0 0 20px rgba(0, 242, 254, 0.4);
+    animation: pulseTitle 3s infinite alternate;
+}
+
+.subtitle-span {
+    display: block;
+    font-size: 0.95rem;
+    color: #00f2fe;
+    letter-spacing: 2px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    text-transform: uppercase;
+}
+
+.nav-links a:hover {
+    color: #00ff88;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.8);
+}
+
+/* --- SECCIÓN HERO --- */
+.hero {
+    position: relative;
+    padding: 50px 20px;
+    text-align: center;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(0, 255, 136, 0.2);
+}
+
+.hero-glow {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(0,242,254,0.18) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    animation: glowingPulse 4s infinite alternate;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-subtitle {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.tech-differentiated {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.tech-box {
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-mobile {
+    background: rgba(0, 242, 254, 0.12);
+    color: #00f2fe;
+    border: 2px solid #00f2fe;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+}
+
+.tech-mobile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.8);
+}
+
+.tech-pc {
+    background: rgba(0, 255, 136, 0.12);
+    color: #00ff88;
+    border: 2px solid #00ff88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+}
+
+.tech-pc:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.8);
+}
+
+.tech-vs {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    color: #94a3b8;
+    font-weight: bold;
+}
+
+.glow-blue {
+    color: #00f2fe;
+    text-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+}
+
+.glow-green {
+    color: #00ff88;
+    text-shadow: 0 0 12px rgba(0, 255, 136, 0.6);
+}
+
+.hero-desc {
+    font-size: 1.05rem;
+    color: #94a3b8;
+    margin-bottom: 35px;
+}
+
+.hero-badges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 15px;
+}
+
+.badge-item {
+    background: rgba(13, 27, 42, 0.85);
+    border: 1px solid rgba(0, 242, 254, 0.3);
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.badge-item i {
+    font-size: 1.6rem;
+    color: #00f2fe;
+}
+
+.badge-item span {
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.badge-item:hover {
+    transform: translateY(-4px);
+    border-color: #00ff88;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+}
+
+/* --- SECCIÓN DE MARCAS Y LOGOS --- */
+.brands-section {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.7rem;
+    margin-bottom: 30px;
+    color: #ffffff;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+}
+
+.subsection-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.15rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.brands-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    justify-content: center;
+}
+
+.brand-card {
+    background: rgba(9, 16, 33, 0.85);
+    border: 1px solid rgba(0, 242, 254, 0.25);
+    border-radius: 14px;
+    padding: 18px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 95px;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+}
+
+.brand-card:hover {
+    transform: translateY(-5px);
+    border-color: #00ff88;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.35);
+    background: rgba(14, 25, 52, 0.95);
+}
+
+.brand-graphic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 42px;
+}
+
+.brand-icon-svg {
+    font-size: 2.2rem;
+    color: #ffffff;
+    filter: drop-shadow(0 0 4px rgba(255,255,255,0.6));
+}
+
+.brand-caption {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #cbd5e1;
+    margin-top: 6px;
+}
+
+.text-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.samsung-text {
+    font-size: 1.25rem;
+    color: #ffffff;
+    background: #034ea2;
+    padding: 4px 14px;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(3, 78, 162, 0.6);
+}
+
+.xiaomi-box {
+    background: #ff6900;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(255, 105, 0, 0.6);
+}
+
+.xiaomi-txt {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    color: #ffffff;
+    letter-spacing: -1px;
+}
+
+.moto-m {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: #ffffff;
+    background: #111;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.huawei-svg {
+    width: 38px;
+    height: 38px;
+    filter: drop-shadow(0 0 4px rgba(255, 0, 0, 0.5));
+}
+
+.oppo-text {
+    font-size: 1.4rem;
+    color: #00ff88;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+.vivo-text {
+    font-size: 1.4rem;
+    color: #00f2fe;
+    text-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
+    font-weight: 900;
+}
+
+.honor-text {
+    font-size: 1.3rem;
+    background: linear-gradient(90deg, #ff007f, #00f2fe);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.lg-text {
+    font-size: 1.4rem;
+    color: #a50034;
+    text-shadow: 0 0 8px rgba(165, 0, 52, 0.6);
+}
+
+.lenovo-text {
+    font-size: 1.3rem;
+    color: #ffffff;
+    background: #e11400;
+    padding: 3px 10px;
+    border-radius: 4px;
+}
+
+.hp-text {
+    font-size: 1.4rem;
+    color: #0096d6;
+    border: 2px solid #0096d6;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    font-weight: 900;
+}
+
+.asus-text {
+    font-size: 1.3rem;
+    color: #00e5ff;
+    letter-spacing: 2px;
+}
+
+.acer-text {
+    font-size: 1.3rem;
+    color: #82b541;
+    font-weight: 900;
+}
+
+/* --- CATÁLOGO DE PRODUCTOS Y SERVICIOS (GRID) --- */
+.catalog-section {
+    padding: 50px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-catalog {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+}
+
+.card {
+    background: linear-gradient(135deg, rgba(11, 19, 41, 0.85) 0%, rgba(5, 11, 24, 0.85) 100%);
+    border: 1px solid rgba(0, 242, 254, 0.25);
+    border-radius: 15px;
+    padding: 25px 18px;
+    text-align: center;
+    transition: all 0.35s ease;
+    backdrop-filter: blur(5px);
+}
+
+.card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: #00ff88;
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+}
+
+.card-icon {
+    font-size: 2.3rem;
+    margin-bottom: 12px;
+}
+
+.blue-glow-icon {
+    color: #00f2fe;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.7);
+}
+
+.green-glow-icon {
+    color: #00ff88;
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.7);
+}
+
+.card h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.card-sub {
+    font-size: 0.82rem;
+    color: #94a3b8;
+    line-height: 1.3;
+}
+
+/* Banner de Garantía para Computación */
+.warranty-card-banner {
+    margin-top: 30px;
+    background: rgba(11, 25, 44, 0.8);
+    border: 2px solid #00ff88;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+    backdrop-filter: blur(8px);
+}
+
+.warranty-card-banner i {
+    font-size: 1.8rem;
+    color: #00ff88;
+}
+
+.warranty-card-banner span {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: #00ff88;
+    letter-spacing: 1px;
+}
+
+/* --- SECCIÓN DE CONTACTO Y DIRECCIONES --- */
+.contact-section {
+    padding: 45px 20px;
+}
+
+.contact-card {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    background: rgba(11, 25, 44, 0.8);
+    border: 2px solid rgba(0, 255, 136, 0.35);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+}
+
+.location-icon {
+    font-size: 1.8rem;
+    color: #00ff88;
+    flex-shrink: 0;
+    text-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+}
+
+.whatsapp-icon {
+    font-size: 2rem;
+    color: #25d366;
+    flex-shrink: 0;
+    text-shadow: 0 0 8px rgba(37, 211, 102, 0.6);
+}
+
+.contact-item p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #cbd5e1;
+}
+
+.contact-item a {
+    color: #00ff88;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.05rem;
+    transition: text-shadow 0.3s;
+}
+
+.contact-item a:hover {
+    text-shadow: 0 0 10px #00ff88;
+}
+
+/* --- BOTÓN FLOTANTE DE WHATSAPP --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    background-color: #25d366;
+    color: #ffffff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.6);
+    z-index: 9999;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: whatsappBounce 2.5s infinite ease-in-out;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.15) rotate(10deg);
+    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.9);
+}
+
+/* --- FOOTER --- */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(2, 4, 8, 0.95);
+    color: #64748b;
+    font-size: 0.82rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- ANIMACIONES CSS --- */
+@keyframes pulseTitle {
+    0% { transform: scale(
